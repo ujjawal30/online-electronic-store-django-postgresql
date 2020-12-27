@@ -1,0 +1,255 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Site Metas -->
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Site Icons -->
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+	<link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<!-- Site CSS -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+    <!-- Start Main Top -->
+	<header class="main-header">
+		<!-- Start Navigation -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav" style="height:70px">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" height="40px" /></a><br>
+                </div>
+                <!-- End Header Navigation -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse bg-light" id="navbar-menu" style="height:70px">
+                    <form class="form-inline" action="/search/" method="GET">
+                        <div class="input-group px-5">
+                            <input class="form-control" placeholder="What are you looking to buy?" name="search" type="text" style="width:400px">
+                            <div class="input-group-append">
+                            <button class="btn text-light" type="submit" style="background-color: #426cf5;"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        {% if user.id %}
+                        <li class="dropdown">
+                            <a href="/account" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{ customer.profile_pic.url }}" class="avatar">
+                                <span class="pl-2">{{user.first_name}} {{user.last_name}}</span>
+                                <i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold" href="/account/#profile">
+                                        <i class="fa fa-user pr-2"></i> Profile
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold" href="/account/#wishlist">
+                                        <i class="fa fa-heart pr-2"></i> Wishlist
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold" href="/account/#order-history">
+                                        <i class="fa fa-history pr-2"></i> Order History
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold" href="/logout">
+                                        <i class="fa fa-sign-out-alt pr-2"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/cart" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Cart ({{qty}})</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                {% if carts %}
+                                {% for cart in carts %}
+                                <li class="nav-item">
+                                    <a href="/productdetail/{{cart.product_id}}" class="nav-link">
+                                        {{forloop.counter}}.
+                                        <span class="font-weight-bold">{{cart.product.product_name}}</span> <br>
+                                        {{cart.qty}}x - ₹ {{cart.amount|floatformat:2|intcomma}}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                                <li class="nav-item">
+                                    <a href="/cart" class="nav-link">
+                                        Total : ₹ {{total|floatformat:2|intcomma}}
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold">
+                                        Cart is Empty.
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">
+                                <i class="fa fa-sign-in-alt pr-2"></i>Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">
+                                <i class="fa fa-user-plus pr-2"></i>SignUp
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <span>More</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold" href="/contactus">
+                                        <i class="fa fa-phone pr-2"></i>Contact Us
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold" href="/about">
+                                        <i class="fa fa-users pr-2"></i>About
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+			</div>
+		</nav>
+		<!-- End Navigation -->
+	</header>
+     <!-- End Main Top -->
+
+    {% block body %}
+    {% endblock %}
+
+	<!-- Start Footer  -->
+	<footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>About Lifestyle Electronics</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="#">About Us</i></a></li>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Our Sitemap</a></li>
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</footer>
+	<!-- End Footer  -->
+
+	<!-- Start copyright  -->
+	<div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2020 <a href="/">Lifestyle Electronics</a></p>
+	</div>
+	<!-- End copyright  -->
+
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- ALL PLUGINS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/superslides/0.6.2/jquery.superslides.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/bootsnav.js' %}"></script>
+    <!--
+        <script src="{% static 'js/images-loded.min.js' %}"></script>
+        <script src="{% static 'js/form-validator.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+        <script src="{% static 'js/isotope.min.js' %}"></script>
+        <script src="{% static 'js/contact-form-script.js' %}"></script>
+        <script src="{% static 'js/bootstrap-select.js' %}"></script>
+        <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/inewsticker.js' %}"></script>
+        <script src="{% static 'js/jquery-ui.js' %}"></script>
+    -->
+</body>
+
+</html>
+    

@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+My Account | Lifestyle Electronics
+{% endblock %}
+
+{% block body %}
+
+<div class="shadow p-2 rounded" style="background-color:#e9ecef; color:black">
+    <div class="row text-center font-weight-bold">
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <p><a href="/products">All Products</a></p>
+        </div>
+        {% for category in categories %}
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <p><a href="/products/?category={{category.id}}">{{category.category_name}}</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <script>
+                $('.alert').alert()
+            </script>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="my-account-box-main">
+    <div class="container">
+        <div class="my-account-page">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>Account Information</h1>
+                    </div>
+                    <div class="title-left" id="profile">
+                        <h1 class="font-weight-bold"><i class="fa fa-user pr-2"></i>Profile</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12" style="margin-bottom:20px;">
+                            <div class="mb-4 ctr">
+                                <img src="{{customer.profile_pic.url}}" height="200px" alt="Image" style="border-radius: 25%;">
+                            </div>
+                            <div class="mb-2 ctr">
+                                <a href="/account/updateprofile" class="btn hvr-hover cart mx-1" style="color:white">Update Profile</a>
+                                <a href="/account/changepassword" class="btn hvr-hover cart mx-1" style="color:white">Change Password</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12" style="margin-bottom:20px;">
+                            <div class="display-4" style="margin-bottom:20px">
+                                {{user.first_name}} {{user.last_name}}
+                            </div>
+                            <div class="table-main table-responsive" style="margin-bottom:20px">
+                                <table class="table">
+                                    <tr>
+                                        <td>E-mail</td>
+                                        <td>{{user.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mobile Number</td>
+                                        <td>+91 {{customer.phone}}</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td>{{customer.house_no}}, {{customer.street}}, {{customer.city}} - {{customer.pin}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customer Since</td>
+                                        <td>{{user.date_joined}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="title-left" id="wishlist">
+                        <h1 class="font-weight-bold"><i class="fa fa-heart pr-2"></i>Wishlist</h1>
+                    </div>
+                    {% if wishlists %}
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="table-main table-responsive" style="padding-bottom: 20px;">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>S. No.</th>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Added On</th>
+                                            <th>Add to Cart</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for wishlist in wishlists %}
+                                        <tr>
+                                            <td class="price-pr text-center">
+                                                <p>{{forloop.counter}}.</p>
+                                            </td>
+                                            <td class="thumbnail-img" style="text-align:center">
+                                                <a href="/productdetail/{{wishlist.product_id}}">
+                                                <img height="100" src="{{wishlist.product.product_img.url}}" alt="" />
+                                                </a>
+                                            </td>
+                                            <td class="name-pr">
+                                                <a href="/productdetail/{{wishlist.product_id}}">
+                                                {{wishlist.product.product_name}}
+                                                </a>
+                                            </td>
+                                            <td class="price-pr text-center">
+                                                <p>₹ {{wishlist.product.price|floatformat:2|intcomma}}</p>
+                                            </td>
+                                            <td class="quantity-box text-center">
+                                                <p>{{wishlist.added_on}}</p>
+                                            </td>
+                                            <td class="remove-pr">
+                                                <a href="/addtocart/{{wishlist.product_id}}"><i class="fa fa-cart-plus"></i></a>
+                                            </td>
+                                            <td class="remove-pr">
+                                                <a href="/removefromwishlist/{{wishlist.product_id}}"><i class="fa fa-trash"></i>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="title-all text-center">
+                                <h2>No items in your wishlist</h2>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="title-left" id="order-history">
+                        <h1 class="font-weight-bold"><i class="fa fa-history pr-2"></i>Order History</h1>
+                    </div>
+                    {% if orderprs %}
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                        {% for order in orders %}
+                            <div class="row mb-2">
+                                <div class="col-lg-4 text-left"><p>Order ID : {{order.code}}</p></div>
+                                <div class="col-lg-4 text-center"><p>Order Date : {{order.placed_at}}</p></div>
+                                <div class="col-lg-4 text-right"><p>Order Total : ₹ {{order.total|floatformat:2|intcomma}}</p></div>
+                            </div>
+                            <div class="table-main table-responsive col-auto">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th style="padding:0.25rem;">Product Name</th>
+                                            <th style="padding:0.25rem;">Price</th>
+                                            <th style="padding:0.25rem;">Quantity</th>
+                                            <th style="padding:0.25rem;">Total</th>
+                                            <th style="padding:0.25rem;">Status</th>
+                                            <th style="padding:0.25rem;">Updated On</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for orderpr in orderprs %}
+                                        {% for orderp in orderpr %}
+                                        {% if orderp.order_id == order.id %}
+                                        <tr>
+                                            <td class="name-pr">
+                                                <a href="/productdetail/{{orderp.product_id}}" class="nav-link">
+                                                {{orderp.product.product_name}}
+                                                </a>
+                                            </td>
+                                            <td class="price-pr text-center">
+                                                <p>₹ {{orderp.price|floatformat:2|intcomma}}</p>
+                                            </td>
+                                            <td class="quantity-box text-center">
+                                                <p>{{orderp.qty}}</p>
+                                            </td>
+                                            <td class="total-pr text-center">
+                                                <p>₹ {{orderp.amount|floatformat:2|intcomma}}</p>
+                                            </td>
+                                            <td class="name-pr">
+                                                <p>{{orderp.status}}</p>
+                                            </td>
+                                            <td class="quantity-box text-center">
+                                                <p>{{orderp.updated_at}}</p>
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="title-all text-center">
+                                <h2>No previous orders</h2>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
