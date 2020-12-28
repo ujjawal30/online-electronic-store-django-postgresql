@@ -540,7 +540,21 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         width: 200px;
         background: #fff;
         border: solid 1px #e0e0e0;
-        border-top: solid 5px;
+    }
+
+    nav.navbar.bootsnav li.dropdown ul.dropdown-menu.cart-item{
+        -moz-box-shadow: 0px 0px 0px;
+        -webkit-box-shadow: 0px 0px 0px;
+        -o-box-shadow: 0px 0px 0px;
+        box-shadow: 0px 0px 0px;
+        -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -o-border-radius: 0px;
+        border-radius: 0px;
+        padding: 0;
+        width: 300px;
+        background: #fff;
+        border: solid 1px #e0e0e0;
     }
     
     nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover,

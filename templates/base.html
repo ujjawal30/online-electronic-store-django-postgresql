@@ -42,118 +42,123 @@
     <!-- Start Main Top -->
 	<header class="main-header">
 		<!-- Start Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav" style="height:70px">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
             <div class="container">
                 <!-- Start Header Navigation -->
-                <div class="navbar-header">
+                <div class="navbar-header col-lg-3 col-md-5 col-sm-12">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
+                        <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" height="40px" /></a><br>
+                    <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}"/></a>
                 </div>
                 <!-- End Header Navigation -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse bg-light" id="navbar-menu" style="height:70px">
-                    <form class="form-inline" action="/search/" method="GET">
-                        <div class="input-group px-5">
-                            <input class="form-control" placeholder="What are you looking to buy?" name="search" type="text" style="width:400px">
-                            <div class="input-group-append">
-                            <button class="btn text-light" type="submit" style="background-color: #426cf5;"><i class="fa fa-search"></i></button>
+                <div class="collapse navbar-collapse bg-light col-lg-9 col-md-7" id="navbar-menu">
+                    <div class="col-lg-6">
+                        <form class="form-inline" action="/search/" method="GET">
+                            <div class="input-group" style="width: 100%;">
+                                <input class="form-control" placeholder="What are you looking to buy?" name="search" type="text">
+                                <div class="input-group-append">
+                                    <button class="btn text-light" type="submit" style="background-color: #426cf5;"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        {% if user.id %}
-                        <li class="dropdown">
-                            <a href="/account" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ customer.profile_pic.url }}" class="avatar">
-                                <span class="pl-2">{{user.first_name}} {{user.last_name}}</span>
-                                <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="/account/#profile">
-                                        <i class="fa fa-user pr-2"></i> Profile
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="/account/#wishlist">
-                                        <i class="fa fa-heart pr-2"></i> Wishlist
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="/account/#order-history">
-                                        <i class="fa fa-history pr-2"></i> Order History
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="/logout">
-                                        <i class="fa fa-sign-out-alt pr-2"></i> Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="/cart" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Cart ({{qty}})</span>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                {% if carts %}
-                                {% for cart in carts %}
-                                <li class="nav-item">
-                                    <a href="/productdetail/{{cart.product_id}}" class="nav-link">
-                                        {{forloop.counter}}.
-                                        <span class="font-weight-bold">{{cart.product.product_name}}</span> <br>
-                                        {{cart.qty}}x - ₹ {{cart.amount|floatformat:2|intcomma}}
-                                    </a>
-                                </li>
-                                {% endfor %}
-                                <li class="nav-item">
-                                    <a href="/cart" class="nav-link">
-                                        Total : ₹ {{total|floatformat:2|intcomma}}
-                                    </a>
-                                </li>
-                                {% else %}
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold">
-                                        Cart is Empty.
-                                    </a>
-                                </li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">
-                                <i class="fa fa-sign-in-alt pr-2"></i>Login
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/signup">
-                                <i class="fa fa-user-plus pr-2"></i>SignUp
-                            </a>
-                        </li>
-                        {% endif %}
-                        <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                                <span>More</span>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="/contactus">
-                                        <i class="fa fa-phone pr-2"></i>Contact Us
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="/about">
-                                        <i class="fa fa-users pr-2"></i>About
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-center">
+                        <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                            {% if user.id %}
+                            <li class="dropdown">
+                                <a href="/account" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ customer.profile_pic.url }}" class="avatar">
+                                    <span class="pl-2">{{user.first_name}} {{user.last_name}}</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold" href="/account/#profile">
+                                            <i class="fas fa-user-circle pr-2" style="font-size: 18px;"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold" href="/account/#wishlist">
+                                            <i class="fas fa-heart pr-2" style="font-size: 18px;"></i> Wishlist
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold" href="/account/#order-history">
+                                            <i class="fas fa-history pr-2" style="font-size: 18px;"></i> Order History
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold" href="/logout">
+                                            <i class="fas fa-sign-out-alt pr-2" style="font-size: 18px;"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="/cart" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-shopping-cart" style="font-size: 18px;"></i>
+                                    <span>Cart ({{qty}})</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu cart-item" role="menu">
+                                    {% if carts %}
+                                    {% for cart in carts %}
+                                    <li class="nav-item">
+                                        <a href="/productdetail/{{cart.product_id}}" class="nav-link">
+                                            {{forloop.counter}}.
+                                            <span class="font-weight-bold">{{cart.product.product_name}}</span> <br>
+                                            {{cart.qty}}x - ₹ {{cart.amount|floatformat:2|intcomma}}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    <li class="nav-item">
+                                        <a href="/cart" class="nav-link">
+                                            Total : ₹ {{total|floatformat:2|intcomma}}
+                                        </a>
+                                    </li>
+                                    {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold">
+                                            Cart is Empty.
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">
+                                    <i class="fas fa-sign-in-alt pr-2" style="font-size: 18px;"></i>Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/signup">
+                                    <i class="fas fa-user-plus pr-2" style="font-size: 18px;"></i>SignUp
+                                </a>
+                            </li>
+                            {% endif %}
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    <span>More</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold" href="/contactus">
+                                            <i class="fas fa-phone pr-2" style="font-size: 18px;"></i>Contact Us
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold" href="/about">
+                                            <i class="fas fa-users pr-2" style="font-size: 18px;"></i>About
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 			</div>
 		</nav>
