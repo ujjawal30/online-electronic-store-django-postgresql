@@ -14,11 +14,8 @@ Cart | Lifestyle Electronics
         <div class="alert alert-primary alert-dismissible fade show mb-0" role="alert">
             {{message}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </button>
-            <script>
-                $('.alert').alert()
-            </script>
         </div>
     {% endfor %}
 {% endif %}
@@ -63,17 +60,17 @@ Cart | Lifestyle Electronics
                                 <td class="quantity-box text-center">
                                     <p>
                                         <a class="btn hvr-hover mr-2" href="/deletefromcart/{{cart.product.id}}" style="color:white;">
-                                        <i class="fa fa-minus"></i></a>
+                                        <i class="fas fa-minus"></i></a>
                                         {{cart.qty}}
                                         <a class="btn hvr-hover ml-2" href="/addtocart/{{cart.product.id}}" style="color:white;">
-                                        <i class="fa fa-plus"></i></a>
+                                        <i class="fas fa-plus"></i></a>
                                     </p>
                                 </td>
                                 <td class="total-pr text-center">
                                     <p>₹ {{cart.amount|floatformat:2|intcomma}}</p>
                                 </td>
                                 <td class="remove-pr">
-                                    <a href="/deleteallfromcart/{{cart.product.id}}"><i class="fa fa-trash"></i>
+                                    <a href="/deleteallfromcart/{{cart.product.id}}"><i class="fas fa-trash"></i>
                                 </td>
                             </tr>
                             {% endfor %}

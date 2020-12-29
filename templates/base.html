@@ -47,7 +47,7 @@
                 <!-- Start Header Navigation -->
                 <div class="navbar-header col-lg-3 col-md-5 col-sm-12">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
+                        <i class="fas fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}"/></a>
                 </div>
@@ -59,7 +59,7 @@
                             <div class="input-group" style="width: 100%;">
                                 <input class="form-control" placeholder="What are you looking to buy?" name="search" type="text">
                                 <div class="input-group-append">
-                                    <button class="btn text-light" type="submit" style="background-color: #426cf5;"><i class="fa fa-search"></i></button>
+                                    <button class="btn text-light" type="submit" style="background-color: #426cf5;"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -71,7 +71,7 @@
                                 <a href="/account" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                     <img src="{{ customer.profile_pic.url }}" class="avatar">
                                     <span class="pl-2">{{user.first_name}} {{user.last_name}}</span>
-                                    <i class="fa fa-angle-down"></i>
+                                    <i class="fas fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="nav-item">
@@ -100,7 +100,7 @@
                                 <a href="/cart" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                     <i class="fas fa-shopping-cart" style="font-size: 18px;"></i>
                                     <span>Cart ({{qty}})</span>
-                                    <i class="fa fa-angle-down"></i>
+                                    <i class="fas fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu cart-item" role="menu">
                                     {% if carts %}
@@ -142,7 +142,7 @@
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                     <span>More</span>
-                                    <i class="fa fa-angle-down"></i>
+                                    <i class="fas fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="nav-item">
@@ -184,7 +184,7 @@
                                 <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fas fa-rss" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
                             </ul>

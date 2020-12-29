@@ -26,11 +26,15 @@ def updateprofile(request):
 
     if request.method == "POST":
         current_user = request.user
-        uname = request.POST['username']
         fname = request.POST['fname']
         lname = request.POST['lname']
         email = request.POST['email']
         phone = request.POST['phone']
+        house = request.POST['house']
+        street = request.POST['street']
+        state = request.POST['state']
+        city = request.POST['city']
+        pin = request.POST['pin']
         profile_pic=''
         try:
             profile_pic = request.FILES['pic']
@@ -38,9 +42,6 @@ def updateprofile(request):
             pass
         
         # Form Validations
-        if not uname.isalpha() or len(uname)>10:
-            messages.warning(request, "Invalid Username!!! Try another one")
-            return HttpResponseRedirect('/account/updateprofile')
         if len(fname)>10 and len(lname)>10:
             messages.success(request, "First or Last Name too long!!!")
             return HttpResponseRedirect('/account/updateprofile')
@@ -52,7 +53,7 @@ def updateprofile(request):
             return HttpResponseRedirect('/account/updateprofile')
 
         update_user = User.objects.get(id=current_user.id)
-        update_user.username=uname
+        update_user.username=email
         update_user.first_name=fname
         update_user.last_name=lname
         update_user.email=email
@@ -60,6 +61,11 @@ def updateprofile(request):
 
         update_customer = Customer.objects.get(user_id=update_user.id)
         update_customer.phone=phone
+        update_customer.house_no=house
+        update_customer.street=street
+        update_customer.state=state
+        update_customer.city=city
+        update_customer.pin=pin
         if profile_pic:
             update_customer.profile_pic=profile_pic
         update_customer.save()
