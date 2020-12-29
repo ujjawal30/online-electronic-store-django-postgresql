@@ -11,7 +11,7 @@ Class-based views
 """
 from django.urls import path
 from .views import index, signup, login, productdetail, products, cartoperations, buynow, checkout, logout, cart, account
-from .views import wishlist, search, updateprofile, changepassword, postreview, contact, about
+from .views import wishlist, search, updateprofile, changepassword, postreview, contact, about, cancelproduct
 
 urlpatterns = [
     path("", index.index, name="ShopHome"),
@@ -30,6 +30,7 @@ urlpatterns = [
     path("cart/", cart.cart, name="Cart"),
     path("clearcart/", cartoperations.clearcart, name="ClearCart"),
     path("checkout/", checkout.checkout, name="CheckOut"),
+    path("cancelproduct/<int:orid>/<int:prid>", cancelproduct.cancelProduct, name="CancelProduct"),
     path("contactus/", contact.contact, name="ContactUs"),
     path("about/", about.about, name="AboutUs"),
     path("account/", account.account, name="Account"),

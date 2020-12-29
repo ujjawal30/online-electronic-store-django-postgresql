@@ -167,7 +167,6 @@ My Account | Lifestyle Electronics
                                                 <th style="padding:0.25rem;">Quantity</th>
                                                 <th style="padding:0.25rem;">Total</th>
                                                 <th style="padding:0.25rem;">Status</th>
-                                                <th style="padding:0.25rem;">Updated On</th>
                                                 <th style="padding:0.25rem;"></th>
                                             </tr>
                                         </thead>
@@ -193,13 +192,33 @@ My Account | Lifestyle Electronics
                                                 <td class="total-pr text-center">
                                                     <p>₹ {{orderp.amount|floatformat:2|intcomma}}</p>
                                                 </td>
-                                                <td class="name-pr text-center">
-                                                    <p>{{orderp.status}}</p>
+                                                <td class="name-pr text-center" style="color: #e9ecef;">
+                                                    {% if orderp.status == 'Cancelled' %}
+                                                    <span class="badge bg-danger" data-bs-toggle="tooltip" title="Updated at: {{orderp.updated_at}}">
+                                                        {{orderp.status}}
+                                                    </span>
+                                                    {% elif orderp.status == 'Delivered' %}
+                                                    <span class="badge bg-success" data-bs-toggle="tooltip" title="Updated at: {{orderp.updated_at}}">
+                                                        {{orderp.status}}</span>
+                                                    {% else %}
+                                                    <span class="badge bg-primary" data-bs-toggle="tooltip" title="Updated at: {{orderp.updated_at}}">
+                                                        {{orderp.status}}</span>
+                                                    {% endif %}
                                                 </td>
                                                 <td class="quantity-box text-center">
-                                                    <p>{{orderp.updated_at}}</p>
-                                                </td>
-                                                <td class="quantity-box text-center">
+                                                    {% if orderp.status == 'Cancelled' %}
+                                                    <a href="#" class="btn hvr-hover-cancel disabled" style="color: #e9ecef;" aria-disabled="true">
+                                                        Cancelled
+                                                    </a>
+                                                    {% elif orderp.status == 'Delivered' %}
+                                                    <a href="#" class="btn hvr-hover-cancel disabled" style="color: #e9ecef;" aria-disabled="true">
+                                                        Delivered
+                                                    </a>
+                                                    {% else %}
+                                                    <a href="/cancelproduct/{{order.id}}/{{orderp.product.id}}" class="btn hvr-hover-cancel" style="color: #e9ecef;">
+                                                        Cancel
+                                                    </a>
+                                                    {% endif %}
                                                 </td>
                                             </tr>
                                             {% endif %}
