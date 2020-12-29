@@ -82,7 +82,7 @@ class Order(models.Model):
     placed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.code + " to " + self.first_name + "\t" + self.last_name
 
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
