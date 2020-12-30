@@ -8,7 +8,7 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ['user', 'phone', 'profile_pic']
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'product_name', 'category', 'brand', 'price', 'stock', 'product_img']
+    list_display = ['id', 'product_name', 'category', 'brand', 'price', 'stock', 'tag', 'product_img']
 
 class CartAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'qty', 'price', 'amount']

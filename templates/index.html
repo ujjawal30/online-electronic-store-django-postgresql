@@ -95,6 +95,7 @@ Lifestyle Electronics
         </div>
         <div class="row">
             {% for product in products %}
+            {% if product.tag == 'Featured' %}
             <div class="col-lg-3 col-md-6 special-grid">
                 <div class="products-single fix shadow p-2 bg-white rounded">
                     <a href="/productdetail/{{product.id}}">
@@ -117,6 +118,7 @@ Lifestyle Electronics
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
         <div class="row">

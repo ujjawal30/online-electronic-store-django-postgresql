@@ -28,7 +28,7 @@ def index(request):
     
     params = {
         'customer':customer,
-        'products': products[:8],
+        'products': products,
         'mobiles': mobiles,
         'laptops': laptops,
         'tvs': tvs,
