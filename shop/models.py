@@ -22,14 +22,23 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
-        
+
+TAG = (
+    ('New', 'New'),
+    ('Bestseller', 'Bestseller'),
+    ('Trending', 'Trending'),
+    ('Featured', 'Featured'),
+    ('Sale', 'Sale'),
+)
+
+
 class Product(models.Model):
     product_name = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     description = models.TextField(max_length=1000)
     brand = models.CharField(max_length=20, default="")
     price = models.IntegerField(default=0)
-    tag = models.CharField(default="New", max_length=10)
+    tag = models.CharField(default="New", choices=TAG, max_length=20)
     stock = models.IntegerField(default=10)
     product_img = models.ImageField(upload_to="images", default="product.jpg")
     product_img1 = models.ImageField(upload_to="images", default="product.jpg")
