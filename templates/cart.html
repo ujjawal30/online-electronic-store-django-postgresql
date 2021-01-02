@@ -50,7 +50,7 @@ Cart | Lifestyle Electronics
                                     </a>
                                 </td>
                                 <td class="name-pr">
-                                    <a href="/productdetail/{{cart.product_id}}">
+                                    <a href="/productdetail/{{cart.product_id}}" class="nav-link">
                                     {{cart.product.product_name}}
                                     </a>
                                 </td>
@@ -70,7 +70,7 @@ Cart | Lifestyle Electronics
                                     <p>₹ {{cart.amount|floatformat:2|intcomma}}</p>
                                 </td>
                                 <td class="remove-pr">
-                                    <a href="/deleteallfromcart/{{cart.product.id}}"><i class="fas fa-trash"></i>
+                                    <a href="/deleteallfromcart/{{cart.product.id}}" class="nav-link"><i class="fas fa-trash"></i>
                                 </td>
                             </tr>
                             {% endfor %}

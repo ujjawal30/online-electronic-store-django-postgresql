@@ -62,7 +62,7 @@ Search Results | Lifestyle Electronics
                             <div class="row">
                                 {% for product in products %}
                                 <div class="col-lg-3 col-md-6 special-grid">
-                                    <div class="products-single fix shadow p-2 bg-white rounded">
+                                    <div class="products-single fix shadow-sm p-2 bg-white rounded">
                                         <a href="/productdetail/{{product.id}}">
                                         <div class="box-img-hover ctr" style="height:255px;">
                                             <div class="type-lb">
@@ -72,9 +72,8 @@ Search Results | Lifestyle Electronics
                                             <div class="mask-icon"></div>
                                         </div></a>
                                         <div class="why-text text-center" style="height:155px;">
-                                            <a href="/productdetail/{{product.id}}">
-                                            <h4 id="namepr{{product.id}}">{{product.product_name}}</h4>
-                                            <h5>₹ {{product.price|intcomma}}</h5></a>
+                                            <h4><a href="/productdetail/{{product.id}}">{{product.product_name}}</a></h4>
+                                            <h5>₹ {{product.price|intcomma}}</h5>
                                             <div class="mt-2">
                                                 <a href="/buynow/{{product.id}}" class="btn hvr-hover cart" style="color:white">Buy Now</a>
                                                 <a href="/addtocart/{{product.id}}" class="btn hvr-hover cart" style="color:white">Add to Cart</a>
@@ -87,10 +86,10 @@ Search Results | Lifestyle Electronics
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="list-view">
                             {% for product in products %}
-                            <div class="list-view-box">
+                            <div class="list-view-box products-single shadow-sm">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                        <div class="products-single fix shadow p-2 bg-white rounded">
+                                        <div class="fix shadow p-2 bg-white rounded">
                                             <div class="box-img-hover ctr" style="height:255px;">
                                                 <div class="type-lb">
                                                     <p class="new">New</p>
@@ -103,10 +102,11 @@ Search Results | Lifestyle Electronics
                                         <div class="why-text full-width">
                                             <h4>{{product.product_name}}</h4>
                                             <h5>₹ {{product.price|intcomma}}</h5>
-                                            <p><ol>
+                                            <ol class="my-2">
                                                 <li><strong>Brand : {{product.brand}}</strong></li>
                                                 <li><strong>Category : {{product.category.category_name}}</strong></li>
-                                            </ol></p>
+                                            </ol>
+                                            <a class="btn hvr-hover my-2" href="/productdetail/{{product.id}}">View</a><br>
                                             <a href="/buynow/{{product.id}}" class="btn hvr-hover cart" style="color:white">Buy Now</a>
                                             <a class="btn hvr-hover" href="/addtocart/{{product.id}}">Add to Cart</a>
                                         </div>

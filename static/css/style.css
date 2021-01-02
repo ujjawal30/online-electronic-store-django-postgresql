@@ -20,7 +20,7 @@ IMPORT FILES
 
 @import url(bootsnav.css);
 @import url("https://cdnjs.cloudflare.com/ajax/libs/superslides/0.6.2/stylesheets/superslides.css");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css");
+@import url(all.css);
 
 /*------------------------------------------------------------------
 SKELETON
@@ -718,19 +718,20 @@ ul.cart-list p .price {
 .hvr-hover {
     display: inline-block;
     vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
     background: #426cf5;
     -webkit-transition-property: color;
     transition-property: color;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    border-radius: 0;
+    border-radius: 3px;
     box-shadow: none;
 }
 
+.hvr-hover:hover {
+    background: black;
+}
+
+/*
 .hvr-hover::after {
     content: "";
     position: absolute;
@@ -751,6 +752,7 @@ ul.cart-list p .price {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
+*/
 
 .hvr-hover:hover::after {
     -webkit-transform: scaleY(1);
@@ -761,19 +763,20 @@ ul.cart-list p .price {
 .hvr-hover-cancel {
     display: inline-block;
     vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
     background: #dc3545;
     -webkit-transition-property: color;
     transition-property: color;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
     border-radius: 3px;
     box-shadow: none;
 }
 
+.hvr-hover-cancel:hover {
+    background: black;
+}
+
+/*
 .hvr-hover-cancel::after {
     content: "";
     position: absolute;
@@ -794,6 +797,7 @@ ul.cart-list p .price {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
+*/
 
 .hvr-hover-cancel:hover::after {
     -webkit-transform: scaleY(1);
@@ -1173,6 +1177,10 @@ ul.cart-list>li.total>.btn:hover {
     animation: bounceY 0.9s linear;
 }
 
+.products-single:hover {
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, .175)!important
+}
+
 @keyframes bounceY {
     0% {
         transform: translateY(-205px);
@@ -1247,201 +1255,6 @@ ul.cart-list>li.total>.btn:hover {
         -webkit-transform: translateY(0px);
     }
 }
-
-
-/*------------------------------------------------------------------ Blog -------------------------------------------------------------------*/
-
-.latest-blog {
-    padding: 70px 0px;
-    background: #f5f5f5;
-}
-
-.blog-box {
-    -webkit-box-shadow: 0px 5px 35px 0px rgba(148, 146, 245, 0.15);
-    box-shadow: 0px 5px 35px 0px rgba(148, 146, 245, 0.15);
-    background: #ffffff;
-    margin-bottom: 30px;
-}
-
-.blog-content {
-    position: relative;
-}
-
-.title-blog {
-    padding: 30px 15px 30px 45px;
-}
-
-.title-blog h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #010101;
-}
-
-.title-blog p {
-    margin: 0px;
-}
-
-.option-blog {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    top: 50%;
-    transform: translate(0%, -50%);
-}
-
-.option-blog li a {
-    background: #010101;
-    display: inline-block;
-    font-size: 18px;
-    color: #ffffff;
-    width: 34px;
-    height: 34px;
-    text-align: center;
-    line-height: 34px;
-}
-
-.option-blog li a:hover {
-    background: #426cf5;
-    color: #ffffff;
-}
-
-.tooltip-inner {
-    background-color: #426cf5;
-}
-
-.tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: #426cf5 !important;
-    padding-top: 0px !important;
-    top: 0px !important;
-}
-
-.tooltip.bs-tooltip-left .arrow:before {
-    border-right-color: #426cf5 !important;
-}
-
-.tooltip.bs-tooltip-bottom .arrow:before {
-    border-right-color: #426cf5 !important;
-}
-
-.tooltip.bs-tooltip-top .arrow:before {
-    border-right-color: #426cf5 !important;
-}
-
-
-/*------------------------------------------------------------------ Instagram Feed -------------------------------------------------------------------*/
-
-.instagram-box {
-    padding: 70px 0px;
-    background: url(../images/ins-bg.jpg) no-repeat center center;
-    background-size: auto auto;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: relative;
-}
-
-.instagram-box::before {
-    background: rgba(0, 0, 0, 0.9);
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    content: "";
-    position: absolute;
-    z-index: 0;
-}
-
-.main-instagram.owl-carousel .owl-nav button.owl-prev {
-    background: #010101;
-    position: absolute;
-    z-index: 1;
-    display: block;
-    height: 100%;
-    width: 50px;
-    line-height: 0px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #ffffff;
-    top: 0;
-    padding: 0;
-    margin-top: 0;
-    opacity: 1;
-    left: 0px;
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.main-instagram.owl-carousel .owl-nav button.owl-next {
-    background: #010101;
-    position: absolute;
-    z-index: 1;
-    display: block;
-    height: 100%;
-    width: 50px;
-    line-height: 0px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #ffffff;
-    top: 0;
-    padding: 0;
-    margin-top: 0;
-    opacity: 1;
-    right: 0px;
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.main-instagram.owl-carousel .owl-nav button.owl-next:hover,
-.main-instagram.owl-carousel .owl-nav button.owl-prev:hover {
-    background: #426cf5;
-}
-
-.ins-inner-box {
-    position: relative;
-}
-
-.hov-in {
-    opacity: 0;
-    background: rgba(211, 59, 51, 0.5);
-    bottom: -100%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-transition: all 0.3s ease-out 0.5s;
-    -moz-transition: all 0.3s ease-out 0.5s;
-    -o-transition: all 0.3s ease-out 0.5s;
-    -ms-transition: all 0.3s ease-out 0.5s;
-    transition: all 0.3s ease-out 0.5s;
-    text-align: center;
-    display: table;
-}
-
-.hov-in a {
-    display: table-cell;
-    vertical-align: middle;
-    height: 100%;
-}
-
-.hov-in i {
-    color: #010101;
-    font-size: 48px;
-    position: relative;
-    z-index: 2;
-}
-
-.hov-in a i:hover {
-    color: #ffffff;
-}
-
-.ins-inner-box:hover .hov-in {
-    bottom: 0;
-    opacity: 1;
-}
-
 
 /*------------------------------------------------------------------ Footer Main -------------------------------------------------------------------*/
 

@@ -77,7 +77,7 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: #fff
+    background-color:  #f8f9fa
 }
 
 [tabindex="-1"]:focus {
@@ -4061,7 +4061,8 @@ input[type=submit].btn-block {
 
 .nav-link:focus,
 .nav-link:hover {
-    text-decoration: none
+    text-decoration: none;
+    color: #426cf5;
 }
 
 .nav-link.disabled {
