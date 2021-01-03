@@ -1928,7 +1928,7 @@ pre code {
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    border-radius: .25rem;
+    border-radius: 0;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
@@ -1946,9 +1946,8 @@ pre code {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #80bdff;
+    border-color: #426cf5;
     outline: 0;
-    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
 }
 
 .form-control::-webkit-input-placeholder {
@@ -2472,10 +2471,11 @@ select.form-control-lg:not([size]):not([multiple]) {
     text-decoration: none
 }
 
-.btn.focus,
-.btn:focus {
-    outline: 0;
-    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+.btn:focus,
+.btn.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
 }
 
 .btn.disabled,

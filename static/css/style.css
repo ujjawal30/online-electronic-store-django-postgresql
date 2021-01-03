@@ -1149,7 +1149,7 @@ ul.cart-list>li.total>.btn:hover {
 }
 
 .products-single .mask-icon {
-    background: rgba(1, 1, 1, 0.2);
+    background: rgba(1, 1, 1, 0);
     top: -100%;
     -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);

@@ -99,11 +99,10 @@ Lifestyle Electronics
             {% for product in products %}
             {% if product.tag == 'Featured' %}
             <div class="col-lg-3 col-md-6 special-grid">
-                <div class="products-single fix shadow-sm p-2 bg-white rounded">
-                    <a href="/productdetail/{{product.id}}">
+                <div class="products-single fix shadow-sm p-2 bg-white rounded border border-4">
                     <div class="box-img-hover ctr" style="height:255px;">
                         <img src="{{product.product_img.url}}" class="img-fluid" alt="Image">
-                    </div></a>
+                    </div>
                     <div class="why-text text-center font-weight-bold" style="height:155px;">
                         <h4><a href="/productdetail/{{product.id}}">{{product.product_name}}</a></h4>
                         <h5>₹ {{product.price|intcomma}}</h5>
